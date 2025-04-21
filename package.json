@@ -1,0 +1,38 @@
+{
+  "name": "proyecto-travel-diary-back",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammedChlag/Proyecto-Travel-Diary-Back.git"
+  },
+  "keywords": [],
+  "author": "Mohammed Chikri Laghzaoui",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MohammedChlag/Proyecto-Travel-Diary-Back/issues"
+  },
+  "homepage": "https://github.com/MohammedChlag/Proyecto-Travel-Diary-Back#readme",
+  "dependencies": {
+    "@getbrevo/brevo": "^2.2.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-fileupload": "^1.5.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "randomstring": "^1.3.1",
+    "sharp": "^0.34.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
