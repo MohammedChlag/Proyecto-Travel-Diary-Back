@@ -11,4 +11,5 @@ export const {
   SMTP_USER,
   SMTP_API_KEY,
   UPLOADS_DIR,
+  FRONTEND_HOST,
 } = process.env;
