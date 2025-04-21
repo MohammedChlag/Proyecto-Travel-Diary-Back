@@ -1,0 +1,697 @@
+{
+	"info": {
+		"_postman_id": "482431a7-df19-49cc-8069-369d4eba0880",
+		"name": "Travel Diary Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39994899"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"registrationCode\", pm.response.json().data.registrationCode);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Moha\",\n    \"email\": \"Moha@yopmail.com\",\n    \"password\": \"12345@Moha\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/users/active/{{registrationCode}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"active",
+								"{{registrationCode}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"accessToken\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"moha@yopmail.com\",\n    \"password\":\"12345@Simo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Own User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/user/own",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"own"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"Simo\",   \n    \"email\":\"moha@yopmail.com\",\n    \"firstName\":\"Mohammed\",\n    \"lastName\":\"Chikri\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user/own",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"own"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit avatar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Simo/Pictures/z(1).jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/avatar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"avatar"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\":\"12345@Moha\",\n    \"newPassword\":\"12345@Moh\",\n    \"confirmNewPassword\":\"12345@Moh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Avatar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/users/avatar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send RecPassCode",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"moha@yopmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditPassByRecCode",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"moha@yopmail.com\",\r\n    \"recoveryPassCode\":\"HBUaEDprkAE6Tab\",\r\n    \"newPassword\":\"12345@Simo\",\r\n    \"newPasswordConfirm\":\"12345@Simo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Entries",
+			"item": [
+				{
+					"name": "Get All Entrys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/entries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entrie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/entries/{{entryId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries",
+								"{{entryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"entryId\", pm.response.json().data.entry.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Sin imagenes",
+									"type": "text"
+								},
+								{
+									"key": "place",
+									"value": "Africa",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lone tree",
+									"type": "text"
+								},
+								{
+									"key": "img1",
+									"type": "file",
+									"src": "/C:/Users/Simo/Pictures/Paisajes/lone-tree.jpg"
+								},
+								{
+									"key": "img2",
+									"type": "file",
+									"src": "/C:/Users/Simo/Pictures/Paisajes/lago-esmeralda-cabana-madera-bosque-pinos-parque-nacional-yoho_49071-2243.avif"
+								},
+								{
+									"key": "img3",
+									"type": "file",
+									"src": "/C:/Users/Simo/Pictures/Paisajes/arbol-lago-contra-cielo-puesta-sol_1048944-8112790.avif"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/entries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Photo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img1",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "img2",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "img3",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/entries/{{entryId}}/photos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries",
+								"{{entryId}}",
+								"photos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Entrie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Title 3",
+									"type": "text"
+								},
+								{
+									"key": "place",
+									"value": "Place 3",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Description 3",
+									"type": "text"
+								},
+								{
+									"key": "img1",
+									"type": "file",
+									"src": "/home/moha-chikri/Imágenes/fondos/one-piece-artwork_2560x1440_xtrafondos.com.jpg",
+									"disabled": true
+								},
+								{
+									"key": "img2",
+									"type": "file",
+									"src": "/home/moha-chikri/Imágenes/fondos/casa-kame-de-dragon-ball_2560x1440_xtrafondos.com.jpg",
+									"disabled": true
+								},
+								{
+									"key": "img3",
+									"type": "file",
+									"src": "/home/moha-chikri/Imágenes/fondos/roronoa-zoro-de-one-piece_2560x1440_xtrafondos.com.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/entries/{{entryId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries",
+								"{{entryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Votes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/entries/{{entryId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries",
+								"{{entryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Photo",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"photoIds\": [\"63f1c804-87a0-4ba5-8f65-5821762bd914\", \"de76c951-20b9-418a-94f3-dbc386817935\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/entries/{{entryId}}/photos/{{photoId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries",
+								"{{entryId}}",
+								"photos",
+								"{{photoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Entrie",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/entries/{{entryId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"entries",
+								"{{entryId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

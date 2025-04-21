@@ -1,6 +1,6 @@
 import express from "express";
 
-/* Importamos dcontrollers */
+/* Importamos controllers */
 import { authUserMiddleware } from "../middlewares/authUserMiddleware.js";
 import { getAllUsersController } from "../controllers/users/getAllUsersController.js";
 import { getUserByIdController } from "../controllers/users/getUserByIdController.js";

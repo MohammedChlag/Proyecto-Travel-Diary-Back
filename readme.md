@@ -59,3 +59,9 @@ La aplicación estará disponible en http://localhost:3001. Puedes acceder a ell
 ![alt text](Users-Routes.png)
 
 #### Rutas Entries
+
+![alt text](Entries-Routes.png)
+
+### 7. Base de datos
+
+![alt text](Travel-Diary_Api-DB.png)
